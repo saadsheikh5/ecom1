@@ -4,6 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   base: '/ecom1/',
+  build: {
+    outDir: '../docs'
+  },
   plugins: [react()],
   resolve: {
     alias: {
