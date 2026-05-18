@@ -1,45 +1,108 @@
-import { footerLinks } from '../data/products'
+import { Link } from 'react-router-dom'
+import { footerLinks, siteData } from '../data/products'
 
 function Footer() {
   return (
-    <footer className="border-t border-slate-900 bg-black py-8 sm:py-12 text-white">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-[1fr_0.9fr_0.9fr]">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-white">JTS Beauty</h3>
-            <p className="mt-3 sm:mt-4 max-w-md text-xs sm:text-sm leading-6 text-slate-300">
-              Premium wigs, styling products, and beauty essentials crafted for a confident, polished look.
+    <footer className="border-t border-gray-800 bg-black/50 backdrop-blur-sm py-12 sm:py-16 lg:py-20 text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Footer Grid */}
+        <div className="grid gap-8 sm:gap-10 lg:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+          {/* Brand Section */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <img src={siteData.logo} alt={siteData.brandName} className="h-8 w-8 object-contain" />
+              <h3 className="text-lg font-bold text-white">{siteData.brandName}</h3>
+            </div>
+            <p className="text-sm text-gray-400 leading-relaxed">
+              Premium luxury wigs and styling essentials crafted for confidence and elegance.
             </p>
-          </div>
-          <div>
-            <p className="text-xs sm:text-sm uppercase tracking-[0.24em] text-slate-400 font-semibold">Browse</p>
-            <div className="mt-4 sm:mt-5 flex flex-col gap-2 sm:gap-3 text-xs sm:text-sm text-white">
-              <a href="/products" className="transition hover:text-slate-300">Products</a>
-              <a href="/appointment" className="transition hover:text-slate-300">Appointments</a>
-              <a href="/checkout" className="transition hover:text-slate-300">Checkout</a>
-            </div>
-          </div>
-          <div>
-            <p className="text-xs sm:text-sm uppercase tracking-[0.24em] text-slate-400 font-semibold">Contact</p>
-            <div className="mt-4 sm:mt-5 flex flex-col gap-2 sm:gap-3 text-xs sm:text-sm text-white">
-              {footerLinks.contact.map((link) => (
-                <a key={link.label} href={link.href} className="transition hover:text-slate-300">
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <p className="mt-5 sm:mt-6 text-xs sm:text-sm uppercase tracking-[0.24em] text-slate-400 font-semibold">Follow us</p>
-            <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm text-white">
+            <div className="mt-6 flex gap-4">
               {footerLinks.social.map((link) => (
-                <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="transition hover:text-slate-300">
-                  {link.label}
+                <a 
+                  key={link.label} 
+                  href={link.href} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-gray-800/50 border border-gray-700 text-gray-400 transition hover:bg-white/10 hover:border-gray-600 hover:text-white"
+                  aria-label={link.label}
+                >
+                  <span className="text-xs font-semibold">{link.label.charAt(0).toUpperCase()}</span>
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-white mb-5">Quick Links</h4>
+            <nav className="flex flex-col gap-3">
+              <Link to="/products" className="text-sm text-gray-400 transition hover:text-white">
+                All Products
+              </Link>
+              <Link to="/appointment" className="text-sm text-gray-400 transition hover:text-white">
+                Book Appointment
+              </Link>
+              <Link to="/checkout" className="text-sm text-gray-400 transition hover:text-white">
+                Checkout
+              </Link>
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Track Order
+              </a>
+            </nav>
+          </div>
+
+          {/* Customer Service */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-white mb-5">Customer Service</h4>
+            <nav className="flex flex-col gap-3">
+              {footerLinks.contact.map((link) => (
+                <a 
+                  key={link.label} 
+                  href={link.href} 
+                  className="text-sm text-gray-400 transition hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Returns & Exchanges
+              </a>
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Shipping Info
+              </a>
+            </nav>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-widest text-white mb-5">Legal</h4>
+            <nav className="flex flex-col gap-3">
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Terms of Service
+              </a>
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Accessibility
+              </a>
+              <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+                Cookie Settings
+              </a>
+            </nav>
           </div>
         </div>
-        <div className="mt-8 sm:mt-10 border-t border-slate-900 pt-4 sm:pt-6 text-xs sm:text-sm text-slate-400 text-center">
-          © 2026 JTS Beauty. Crafted for premium wig and serum shopping.
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 pt-8 sm:pt-10">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500">
+            <p>© {new Date().getFullYear()} {siteData.brandName}. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="transition hover:text-gray-300">Privacy</a>
+              <a href="#" className="transition hover:text-gray-300">Terms</a>
+              <a href="#" className="transition hover:text-gray-300">Sitemap</a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

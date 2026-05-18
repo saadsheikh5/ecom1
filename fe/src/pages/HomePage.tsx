@@ -4,112 +4,195 @@ import ProductCard from '../components/ProductCard'
 
 function HomePage() {
   return (
-    <main className="mx-auto max-w-7xl px-6 pb-16 sm:px-8">
-      <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center rounded-[2rem] overflow-hidden shadow-soft">
-        <div className="rounded-[2rem] p-8 sm:p-10" style={{backgroundImage: 'url(/data/images/bg-image.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.92)', backgroundBlendMode: 'lighten'}}>
-          <div>
-          <p className="inline-flex rounded-full bg-slate-900 px-4 py-1 text-sm font-semibold uppercase tracking-[0.2em] text-white">
-            Luxury Wig Boutique
-          </p>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-            Discover premium wigs, serums, and styling tools for standout glamour.
-          </h1>
-          <p className="mt-6 max-w-2xl leading-8 text-slate-600">{siteData.description}</p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link
-              to="/products"
-              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:text-base"
-            >
-              Shop Best Sellers
-            </Link>
-            <Link
-              to="/appointment"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 sm:text-base"
-            >
-              Book Appointment
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {benefits.map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 p-5 shadow-sm" style={{backgroundImage: 'url(/data/images/1.PNG)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.93)', backgroundBlendMode: 'lighten'}}>
-                <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{item.subtitle}</p>
+    <>
+      {/* Hero Section */}
+      <section className="relative min-h-screen lg:min-h-[600px] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-30">
+          <img 
+            src={siteData.heroImage} 
+            alt="Featured collection" 
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/70 to-transparent" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div className="flex flex-col justify-center">
+              {/* Badge */}
+              <div className="inline-flex w-fit rounded-full bg-amber-500/20 border border-amber-500/50 px-4 py-1.5 backdrop-blur-sm">
+                <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-amber-300">
+                  ✨ Luxury Wigs Collection
+                </span>
               </div>
+
+              {/* Heading */}
+              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                Elevate Your Style with Premium Wigs
+              </h1>
+
+              {/* Description */}
+              <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-300 max-w-lg">
+                {siteData.description}
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Link
+                  to="/products"
+                  className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-amber-600 to-amber-500 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-white transition hover:from-amber-700 hover:to-amber-600 active:from-amber-800 active:to-amber-700 shadow-lg hover:shadow-amber-500/30 whitespace-nowrap"
+                >
+                  Shop Now
+                </Link>
+                <Link
+                  to="/appointment"
+                  className="inline-flex items-center justify-center rounded-lg border border-slate-600 bg-slate-700/50 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold text-white transition hover:border-slate-500 hover:bg-slate-700 active:bg-slate-800 whitespace-nowrap"
+                >
+                  Book Appointment
+                </Link>
+              </div>
+
+              {/* Benefits */}
+              <div className="mt-12 grid gap-4 grid-cols-1 sm:grid-cols-2">
+                {benefits.map((item) => (
+                  <div key={item.title} className="rounded-lg border border-slate-700/50 bg-slate-800/40 backdrop-blur-sm p-4">
+                    <h3 className="text-sm font-semibold text-amber-300">{item.title}</h3>
+                    <p className="mt-1 text-xs text-slate-400">{item.subtitle}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Hero Image (Visible on larger screens) */}
+            <div className="hidden lg:block relative h-96 lg:h-[500px]">
+              <img 
+                src={siteData.heroImage} 
+                alt="Featured collection" 
+                className="h-full w-full object-cover rounded-2xl shadow-2xl"
+              />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <main className="mx-auto w-full max-w-7xl">
+        {/* Collections Section */}
+        <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24 border-t border-slate-800">
+          {/* Section Header */}
+          <div className="mb-12 max-w-2xl">
+            <div className="inline-flex rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5">
+              <span className="text-xs font-semibold uppercase tracking-wider text-amber-300">Shop Collections</span>
+            </div>
+            <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+              Explore Our Curated Collections
+            </h2>
+            <p className="mt-4 text-base text-slate-300 leading-relaxed">
+              Discover our premium selection of wigs, serums, and styling tools curated for every style.
+            </p>
+          </div>
+
+          {/* Collections Grid */}
+          <div className="grid gap-5 sm:gap-6 grid-cols-2 lg:grid-cols-3">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                to="/products"
+                className="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-800/50 backdrop-blur-sm p-6 sm:p-7 transition hover:border-amber-500/50 hover:bg-slate-800 cursor-pointer"
+              >
+                {/* Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-600/0 to-amber-600/0 group-hover:from-amber-600/10 group-hover:to-amber-600/0 transition" />
+
+                <div className="relative z-10">
+                  <div className="inline-flex rounded-lg bg-amber-500/20 border border-amber-500/50 px-3 py-1 mb-4">
+                    <span className="text-xs font-semibold text-amber-300">{category.badge}</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition">{category.name}</h3>
+                  <p className="mt-3 text-sm text-slate-300 leading-relaxed">{category.description}</p>
+                  
+                  <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-amber-400 group-hover:gap-3 transition">
+                    Explore
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
-        </div>
-        </div>
+        </section>
 
-        <div className="relative overflow-hidden rounded-[2rem] bg-slate-950 shadow-soft">
-          <div className="absolute inset-0 bg-gradient-to-tr from-slate-800/70 via-transparent to-slate-950" />
-          <img src={siteData.heroImage} alt="Featured wig" className="relative h-[420px] w-full object-cover" />
-        </div>
-      </section>
-
-      <section className="mt-20 rounded-[2rem] p-8 sm:p-10" style={{backgroundImage: 'url(/data/images/bg-image.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.92)', backgroundBlendMode: 'lighten'}}>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.24em] text-slate-500">Explore collections</p>
-            <h2 className="mt-2 text-3xl font-semibold text-slate-900 sm:text-4xl">Shop by style, shade, and shape</h2>
-          </div>
-          <p className="max-w-xl text-sm leading-6 text-slate-600">
-            Curated looks for lace lovers, natural textures, and bold new colors.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((category) => (
-            <div key={category.name} className="group overflow-hidden rounded-3xl border border-slate-200 p-6 transition hover:-translate-y-1 hover:shadow-soft" style={{backgroundImage: 'url(/data/images/2.PNG)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.93)', backgroundBlendMode: 'lighten'}}>
-              <div className="mb-4 inline-flex rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-white">
-                {category.badge}
+        {/* Featured Products Section */}
+        <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24 border-t border-slate-800" aria-labelledby="featured-products">
+          {/* Section Header */}
+          <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <div className="inline-flex rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5">
+                <span className="text-xs font-semibold uppercase tracking-wider text-amber-300">Featured Picks</span>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900">{category.name}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{category.description}</p>
+              <h2 id="featured-products" className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                Best Sellers for Every Style
+              </h2>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-20 rounded-[2rem] p-8 sm:p-10" aria-labelledby="featured-products-heading" style={{backgroundImage: 'url(/data/images/bg-image.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'rgba(255, 255, 255, 0.92)', backgroundBlendMode: 'lighten'}}>
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.24em] text-slate-500">Featured picks</p>
-            <h2 id="featured-products-heading" className="mt-2 text-3xl font-semibold text-slate-900 sm:text-4xl">
-              Our best sellers for every style
-            </h2>
+            <Link 
+              to="/products"
+              className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-amber-600 to-amber-500 px-6 py-3 text-sm font-semibold text-white transition hover:from-amber-700 hover:to-amber-600 whitespace-nowrap shadow-lg hover:shadow-amber-500/30"
+            >
+              Explore All Products
+            </Link>
           </div>
-          <Link to="/products" className="rounded-full border border-slate-200 bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
-            Explore all products
-          </Link>
-        </div>
 
-        <div className="mt-8 grid gap-6 grid-cols-2 lg:grid-cols-3">
-          {products.slice(0, 3).map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+          {/* Products Grid */}
+          <div className="grid gap-5 sm:gap-6 grid-cols-2 lg:grid-cols-3">
+            {products.slice(0, 3).map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
 
-      <section className="mt-20 rounded-[2rem] bg-black px-6 py-14 text-white shadow-soft sm:px-10">
-        <div className="max-w-4xl">
-          <p className="text-sm uppercase tracking-[0.32em] text-slate-400">Stay in the loop</p>
-          <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Join our list for exclusive launch access</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
-            Be first to know about new wig drops, beauty restocks, and appointment openings.
-          </p>
-          <form className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="min-w-0 flex-1 rounded-3xl border border-white/20 bg-white/10 px-5 py-3 text-sm text-white outline-none placeholder:text-white/70 focus:border-white focus:ring-4 focus:ring-white/20"
-            />
-            <button type="submit" className="inline-flex items-center justify-center rounded-3xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-              Unlock My Welcome Gift
-            </button>
-          </form>
-        </div>
-      </section>
-    </main>
+        {/* Newsletter Section */}
+        <section className="mx-4 my-16 sm:mx-6 lg:mx-8 lg:my-24 rounded-2xl overflow-hidden">
+          <div className="relative bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700 px-6 py-12 sm:px-10 sm:py-16 lg:py-20">
+            {/* Decorative Background */}
+            <div className="absolute inset-0 opacity-30">
+              <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-amber-600/20 blur-3xl" />
+            </div>
+
+            <div className="relative z-10 max-w-2xl">
+              <div className="inline-flex rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 mb-4">
+                <span className="text-xs font-semibold uppercase tracking-wider text-amber-300">Newsletter</span>
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                Join Our Exclusive List
+              </h2>
+              
+              <p className="mt-4 text-base text-slate-300 leading-relaxed">
+                Get first access to new collections, exclusive discounts, and special offers delivered to your inbox.
+              </p>
+
+              {/* Newsletter Form */}
+              <form className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="flex-1 rounded-lg border border-slate-600/50 bg-slate-800/50 backdrop-blur-sm px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 transition"
+                />
+                <button 
+                  type="submit"
+                  className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-amber-600 to-amber-500 px-6 py-3 text-sm font-semibold text-white transition hover:from-amber-700 hover:to-amber-600 whitespace-nowrap shadow-lg hover:shadow-amber-500/30"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   )
 }
 

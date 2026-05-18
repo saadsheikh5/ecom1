@@ -1,4 +1,4 @@
-import logo1 from '@images/logo-1.jpeg'
+import logo from '@images/logo.png'
 import heroGraphic from '@images/logo-2.jpeg'
 import bodyWave from '@images/body-wave-1.PNG'
 import waterWave from '@images/water-wave-1.PNG'
@@ -9,7 +9,7 @@ import deepWave from '@images/body-wave-2.PNG'
 import triColor from '@images/2.PNG'
 
 export const siteData = {
-  logo: logo1,
+  logo: logo,
   heroImage: heroGraphic,
   brandName: 'JTS Beauty',
   description:
